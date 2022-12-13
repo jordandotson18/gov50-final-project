@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["cces18_common_vv.data","cces18_common_vv.dta","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1517,8 +1517,142 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in studying data related to wage inequality. Wage inequality refers to the extent to which wages are unevenly distributed among a population. Measures of wage inequality, therefore, provide information about how wide the gap in wages is between the rich and everyone else.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'>#Options</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span></span>
+<span>  scipen <span class='op'>=</span> <span class='fl'>9</span>,</span>
+<span>  width <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span></span>
+<span>  echo <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  message <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  warning <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  fig.align <span class='op'>=</span> <span class='st'>"center"</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://strengejacke.github.io/sjlabelled/'>sjlabelled</a></span><span class='op'>)</span></span>
+<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://haven.tidyverse.org/reference/read_dta.html'>read_dta</a></span><span class='op'>(</span><span class='st'>"cces18_common_vv.dta"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>caseid</span>, <span class='va'>pew_churatd</span>, <span class='va'>ideo5</span>, <span class='va'>gender</span>, <span class='va'>race</span>, <span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>matches</a></span><span class='op'>(</span><span class='st'>"pew|relig"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>sjlabelled</span><span class='fu'>::</span><span class='fu'><a href='https://strengejacke.github.io/sjlabelled/reference/as_label.html'>as_label</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    church <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"Never"</span> <span class='op'>~</span> <span class='fl'>0</span>, </span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"Seldom"</span> <span class='op'>~</span> <span class='fl'>1</span>,</span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"A few times a year"</span> <span class='op'>~</span> <span class='fl'>2</span>,</span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"Once or twice a month"</span> <span class='op'>~</span> <span class='fl'>3</span>,</span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"Once a week"</span> <span class='op'>~</span> <span class='fl'>4</span>,</span>
+<span>      <span class='va'>pew_churatd</span> <span class='op'>==</span> <span class='st'>"More than once a week"</span> <span class='op'>~</span> <span class='fl'>5</span><span class='op'>)</span>,</span>
+<span>    ideology <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span></span>
+<span>      <span class='va'>ideo5</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Liberal"</span>, <span class='st'>"Very liberal"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Liberal"</span>, </span>
+<span>      <span class='va'>ideo5</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Conservative"</span>, <span class='st'>"Very conservative"</span><span class='op'>)</span> <span class='op'>~</span> <span class='st'>"Conservative"</span>,</span>
+<span>      <span class='va'>ideo5</span> <span class='op'>==</span> <span class='st'>"Moderate"</span> <span class='op'>~</span> <span class='st'>"Moderate"</span><span class='op'>)</span>,</span>
+<span>    ideology <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>ideology</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Moderate"</span>, <span class='st'>"Liberal"</span>, <span class='st'>"Conservative"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h2 id="introduction">Introduction</h2>
+<h2 id="data">Data</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">t value</th>
+<th style="text-align: right;">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.62</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">111.46</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ideologyLiberal</td>
+<td style="text-align: right;">-0.51</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">-30.06</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ideologyConservative</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">47.05</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">genderFemale</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">12.23</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="results">Results</h2>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: right;">t value</th>
+<th style="text-align: right;">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.71</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">140.14</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ideologyLiberal</td>
+<td style="text-align: right;">-0.50</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">-29.63</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ideologyConservative</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">46.29</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>##Conclusion</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

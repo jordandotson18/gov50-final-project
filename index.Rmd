@@ -10,9 +10,67 @@ output:
 
 
 
-## Project thoughts
+```{r include = FALSE}
+#Options
+options(
+  scipen = 9,
+  width = 100)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center")
+library(tidyverse)
+library(haven)
+library(sjlabelled)
+ces <- read_dta("cces18_common_vv.dta") |> 
+  select(caseid, pew_churatd, ideo5, gender, race, matches("pew|relig")) |>
+  sjlabelled::as_label() |>
+  mutate(
+    church = case_when(
+      pew_churatd == "Never" ~ 0, 
+      pew_churatd == "Seldom" ~ 1,
+      pew_churatd == "A few times a year" ~ 2,
+      pew_churatd == "Once or twice a month" ~ 3,
+      pew_churatd == "Once a week" ~ 4,
+      pew_churatd == "More than once a week" ~ 5),
+    ideology = case_when(
+      ideo5 %in% c("Liberal", "Very liberal") ~ "Liberal", 
+      ideo5 %in% c("Conservative", "Very conservative") ~ "Conservative",
+      ideo5 == "Moderate" ~ "Moderate"),
+    ideology = factor(ideology, levels = c("Moderate", "Liberal", "Conservative"))
+  )
+```
 
-I am interested in studying data related to wage inequality. Wage inequality refers to the extent to which wages are unevenly distributed among a population. Measures of wage inequality, therefore, provide information about how wide the gap in wages is between the rich and everyone else.
+## Introduction
 
 
 
+## Data 
+
+```{r}
+ces |>
+  ggplot(aes(x = church)) +
+  geom_histogram(aes(y = ..count../sum(..count..)))
+```
+
+
+## Results
+
+```{r}
+ces |>
+  drop_na(ideology) |>
+  group_by(ideology) |>
+  summarize(church = mean(church, na.rm = TRUE)) |>
+  ggplot(aes(x = ideology,
+             y = church)) +
+  geom_col()
+```
+
+```{r}
+mod1 <- lm(church ~ ideology + gender,
+          data = ces)
+
+summary(mod1)$coefficients |> knitr::kable(digits = 2)
+```
+##Conclusion
