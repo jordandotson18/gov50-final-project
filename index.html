@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["cces18_common_vv.data","cces18_common_vv.dta","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["cces18_common_vv.data","cces18_common_vv.dta","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.16/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1473,6 +1473,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="index_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="index_files/kePrint-0.0.1/kePrint.js"></script>
+  <link href="index_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1518,65 +1520,237 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
+<p>Does ideology affect church attendance? In this study, I plan to examine the correlation between individuals’ ideology and their church attendance. I hypothesize that there is a correlation and that Conservatives have the highest church attendance. I expect that the Conservative population will have a higher rate of church attendance than the Liberal population. I hypothesize this because political ideology and religious beliefs are both a reflection of an individual’s broader perception of the world. Conservatives tend to cling to traditional values as western society trends to a more secular state so it is intuitively rational that Conservatives attend church at higher rates than their ideological counterparts. My sample is comprised of responses from 60,000 American adults. My unit of analysis is the rate at which different ideologies attend church. The explanatory variable of interest is whether a person is Conservative or Liberal. My outcome variable is the frequency of church attendance. The variable is coded =0 for never, =1 for seldom, =2 for a few times a year, =3 for once or twice a month, =4 for once a week, and =5 for more than once a week. This variable is measured from a data set created by Brian Schaffner, Stephen Ansolabehere, and Sam Luks on a Cooperative Congressional Election Survey. If I observe a greater church attendance among Conservatives relative to Liberals, this would provide support for my hypothesis. If, on the other hand I observe a greater church attendance among Liberals, this would provide evidence against my hypothesis. When I run my regression of the frequency of church attendance on the Republican indicator variable, a positive, significant coefficient would indicate support for my hypothesis.</p>
 <h2 id="data">Data</h2>
+<p>My data source is CCES Dataverse. A 2018 survey conducted by YouGov asked for the Common Content of 60,000 American adults interviewed in October (for pre-election data), and in November (for post-election data). 60 research teams purchased a 1,000 person national sample survey. For each survey of 1,000 persons, half of the questionnaire was developed and controlled entirely by each individual research team, and half of the questionnaire is devoted to Common Content. All cases were selected through the internet and YouGov constructed matched random samples for the study. This is a longitudinal research design because it measures the characteristics of the same individuals on two occasions over time…before and after the election.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <h2 id="results">Results</h2>
+<p>The bar plot shows that Conservatives have the highest mean of the three ideology groups. The Liberals have the lowest mean at just under 1.25, which means they have a somewhat seldom church attendance. The moderate group has a mean just under 1.75, which means they have a higher rate of church attendance than the Liberals, but it is less than a few times a year. The Conservatives have the highest rate with a mean of 2.5, which means they attend church between a few times a year and once or twice a month.</p>
+<p>The main coefficient of interest in my regression is gender. My main coefficient of interest has a positive estimate of 0.169 which indicates that for a unit increase in x variable (gender) there is a 0.169 increase in the y variable (church attendance). My p values for all my variables are less than 0.001 and due to these values being less than 0.05 we can determine statistically significance. All my standard errors are very small so we can determine there is not a lot of deviation in the results. The intercept is positive so the combined affect of my two independent variables have a strong and positive relationship with my dependent variable. Causality cannot be determined with the available information because I cannot account for possible confounders.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<table>
-<colgroup>
-<col style="width: 30%" />
-<col style="width: 13%" />
-<col style="width: 16%" />
-<col style="width: 11%" />
-<col style="width: 27%" />
-</colgroup>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">Estimate</th>
-<th style="text-align: right;">Std. Error</th>
-<th style="text-align: right;">t value</th>
-<th style="text-align: right;">Pr(&gt;|t|)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Model 1
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">(Intercept)</td>
-<td style="text-align: right;">1.62</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">111.46</td>
-<td style="text-align: right;">0</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:center;">
+1.619
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ideologyLiberal</td>
-<td style="text-align: right;">-0.51</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">-30.06</td>
-<td style="text-align: right;">0</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.015
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">ideologyConservative</td>
-<td style="text-align: right;">0.79</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">47.05</td>
-<td style="text-align: right;">0</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">genderFemale</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">12.23</td>
-<td style="text-align: right;">0</td>
+<tr>
+<td style="text-align:left;">
+ideologyLiberal
+</td>
+<td style="text-align:center;">
+−0.512
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ideologyConservative
+</td>
+<td style="text-align:center;">
+0.793
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+genderFemale
+</td>
+<td style="text-align:center;">
+0.169
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+s.e. = 0.014
+</td>
+</tr>
+<tr>
+<td style="text-align:left;box-shadow: 0px 1px">
+</td>
+<td style="text-align:center;box-shadow: 0px 1px">
+p = &lt;0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Num.Obs.
+</td>
+<td style="text-align:center;">
+54436
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2
+</td>
+<td style="text-align:center;">
+0.103
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R2 Adj.
+</td>
+<td style="text-align:center;">
+0.103
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+1.62
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+111.46
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ideologyLiberal
+</td>
+<td style="text-align:right;">
+-0.51
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-30.06
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ideologyConservative
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+47.05
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+genderFemale
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+12.23
+</td>
+<td style="text-align:right;">
+0
+</td>
 </tr>
 </tbody>
 </table>
 </div>
 <p>##Conclusion</p>
+<p>The results of my analysis are not surprising because the demographics that people identify with and the experiences inherent to these demographics tend to reflect their broader beliefs about the world and the way in which they operate in it. Some limitations of my study are that I did not manipulate the variable to include any possible confounders and there could also be bias in my dataset because it was collected through a survey and there can be many types of bias present in survey data. The study can be improved in the future by collecting a larger sample size to get a more accurate representation.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

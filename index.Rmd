@@ -43,10 +43,11 @@ ces <- read_dta("cces18_common_vv.dta") |>
 ```
 
 ## Introduction
-
+Does ideology affect church attendance? In this study, I plan to examine the correlation between individuals' ideology and their church attendance. I hypothesize that there is a correlation and that Conservatives have the highest church attendance. I expect that the Conservative population will have a higher rate of church attendance than the Liberal population. I hypothesize this because political ideology and religious beliefs are both a reflection of an individual's broader perception of the world. Conservatives tend to cling to traditional values as western society trends to a more secular state so it is intuitively rational that Conservatives attend church at higher rates than their ideological counterparts. My sample is comprised of responses from 60,000 American adults. My unit of analysis is the rate at which different ideologies attend church. The explanatory variable of interest is whether a person is Conservative or Liberal. My outcome variable is the frequency of church attendance. The variable is coded =0 for never, =1 for seldom, =2 for a few times a year, =3 for once or twice a month, =4 for once a week, and =5 for more than once a week. This variable is measured from a data set created by Brian Schaffner, Stephen Ansolabehere, and Sam Luks on a Cooperative Congressional Election Survey. If I observe a greater church attendance among Conservatives relative to Liberals, this would provide support for my hypothesis. If, on the other hand I observe a greater church attendance among Liberals, this would provide evidence against my hypothesis. When I run my regression of the frequency of church attendance on the Republican indicator variable, a positive, significant coefficient would indicate support for my hypothesis.
 
 
 ## Data 
+My data source is CCES Dataverse. A 2018 survey conducted by YouGov asked for the Common Content of 60,000 American adults interviewed in October (for pre-election data), and in November (for post-election data). 60 research teams purchased a 1,000 person national sample survey. For each survey of 1,000 persons, half of the questionnaire was developed and controlled entirely by each individual research team, and half of the questionnaire is devoted to Common Content. All cases were selected through the internet and YouGov constructed matched random samples for the study. This is a longitudinal research design because it measures the characteristics of the same individuals on two occasions over time...before and after the election.
 
 ```{r}
 ces |>
@@ -56,6 +57,9 @@ ces |>
 
 
 ## Results
+The bar plot shows that Conservatives have the highest mean of the three ideology groups. The Liberals have the lowest mean at just under 1.25, which means they have a somewhat seldom church attendance. The moderate group has a mean just under 1.75, which means they have a higher rate of church attendance than the Liberals, but it is less than a few times a year. The Conservatives have the highest rate with a mean of 2.5, which means they attend church between a few times a year and once or twice a month. 
+
+The main coefficient of interest in my regression is gender. My main coefficient of interest has a positive estimate of 0.169 which indicates that for a unit increase in x variable (gender) there is a 0.169 increase in the y variable (church attendance). My p values for all my variables are less than 0.001 and due to these values being less than 0.05 we can determine statistically significance. All my standard errors are very small so we can determine there is not a lot of deviation in the results. The intercept is positive so the combined affect of my two independent variables have a strong and positive relationship with my dependent variable. Causality cannot be determined with the available information because I cannot account for possible confounders. 
 
 ```{r}
 ces |>
@@ -69,8 +73,15 @@ ces |>
 
 ```{r}
 mod1 <- lm(church ~ ideology + gender,
-          data = ces)
-
+          data = ces) 
+modelsummary::modelsummary(mod1,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
 summary(mod1)$coefficients |> knitr::kable(digits = 2)
+
 ```
+
 ##Conclusion
+
+The results of my analysis are not surprising because the demographics that people identify with and the experiences inherent to these demographics tend to reflect their broader beliefs about the world and the way in which they operate in it. Some limitations of my study are that I did not manipulate the variable to include any possible confounders and there could also be bias in my dataset because it was collected through a survey and there can be many types of bias present in survey data. The study can be improved in the future by collecting a larger sample size to get a more accurate representation.  
