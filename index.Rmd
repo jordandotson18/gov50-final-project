@@ -82,6 +82,6 @@ summary(mod1)$coefficients |> knitr::kable(digits = 2)
 
 ```
 
-##Conclusion
 
+## Conclusion
 The results of my analysis are not surprising because the demographics that people identify with and the experiences inherent to these demographics tend to reflect their broader beliefs about the world and the way in which they operate in it. Some limitations of my study are that I did not manipulate the variable to include any possible confounders and there could also be bias in my dataset because it was collected through a survey and there can be many types of bias present in survey data. The study can be improved in the future by collecting a larger sample size to get a more accurate representation.  
